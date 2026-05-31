@@ -64,10 +64,22 @@ print(result.text)
 ## 環境変数
 
 - `GEMINI_API_KEY`: Gemini API キー
-- `SYSTEM_INSTRUCTION`: `clipboard_app.py` のデモ実行時に使う system 指示
+- `SYSTEM_INSTRUCTION`: `example_cli.py` のデモ実行時に使う system 指示
+
+サンプル用の `.env.example` を同梱しています。ルートにコピーして環境に合わせて編集してください:
+
+```bash
+cp .env.example .env
+```
+
+サンプルスクリプト: このリポジトリには `example_cli.py`（デモ用の簡易CLI）が含まれています。README のデモ実行例はこのファイルを使ったものです。
 
 ## デモ実行
 
 ```bash
-python clipboard_app.py "こんにちは"
+python example_cli.py "こんにちは"
 ```
+
+## 注意
+
+現在このパッケージは PyPI（pip）には登録されていません。手動でのインストールは `pip install -e .` などの方法をお使いください。

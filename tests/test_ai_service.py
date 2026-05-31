@@ -9,13 +9,19 @@ if str(SRC_DIR) not in sys.path:
 
 from ai_service.factory import AIService
 from ai_service.types import ChatResult, Message
+from ai_service.base_client import BaseAIClient
 
 
-class DummyClient:
-    def __init__(self) -> None:
+class DummyClient(BaseAIClient):
+    def __init__(self, model: str = "dummy-model", timeout: int = 30) -> None:
+        super().__init__(model=model, timeout=timeout)
         self.calls = []
 
-    def chat(self, messages, **kwargs):
+    def complete(self, prompt: str, **kwargs) -> ChatResult:
+        # Simple wrapper that delegates to chat for tests
+        return self.chat([Message(role="user", content=prompt)], **kwargs)
+
+    def chat(self, messages: list[Message], **kwargs) -> ChatResult:
         self.calls.append((messages, kwargs))
         return ChatResult(
             text="dummy response",
