@@ -1,6 +1,9 @@
 """共通のインターフェース"""
 
 from abc import ABC, abstractmethod
+from typing import List
+
+from .types import ChatResult, Message
 
 
 class AIClientError(Exception):
@@ -15,9 +18,9 @@ class BaseAIClient(ABC):
         self.timeout = timeout
 
     @abstractmethod
-    def complete(self, prompt: str, **kwargs) -> str:
-        """単純なテキスト生成を呼び出す。"""
+    def complete(self, prompt: str, **kwargs) -> ChatResult:
+        """単純なテキスト生成を呼び出す。戻り値は `ChatResult` を返すこと。"""
 
     @abstractmethod
-    def chat(self, messages: list[dict[str, str]], **kwargs) -> str:
-        """チャット形式のやりとりを呼び出す。"""
+    def chat(self, messages: List[Message], **kwargs) -> ChatResult:
+        """チャット形式のやりとりを呼び出す。戻り値は `ChatResult` を返すこと。"""

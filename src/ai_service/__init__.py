@@ -2,6 +2,7 @@ from .base_client import AIClientError, BaseAIClient
 from .factory import AIService, AIServiceFactory, create_client
 from .gemini_client import GeminiClient
 from .openai_client import OpenAIClient
+from .types import ChatResult, Message
 
 __all__ = [
     "AIClientError",
@@ -11,4 +12,6 @@ __all__ = [
     "AIService",
     "AIServiceFactory",
     "create_client",
+    "ChatResult",
+    "Message",
 ]
