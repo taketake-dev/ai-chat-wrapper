@@ -12,9 +12,9 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from ai_service.base_client import AIClientError
-from ai_service.gemini_client import GeminiClient
-from ai_service.types import Message as AIMessage
+from ai_chat_wrapper.base_client import AIClientError
+from ai_chat_wrapper.gemini_client import GeminiClient
+from ai_chat_wrapper.types import Message as AIMessage
 
 
 class FakeResponse:
@@ -51,8 +51,8 @@ class GeminiClientTestCase(unittest.TestCase):
 
         fake_response = FakeResponse(json.dumps(payload))
 
-        with patch("ai_service.gemini_client.urlopen", return_value=fake_response), patch(
-            "ai_service.gemini_client.time.perf_counter", side_effect=[1.0, 1.2]
+        with patch("ai_chat_wrapper.gemini_client.urlopen", return_value=fake_response), patch(
+            "ai_chat_wrapper.gemini_client.time.perf_counter", side_effect=[1.0, 1.2]
         ):
             client = GeminiClient(api_key="test-key", model="gemini-2.5-flash", timeout=10)
             result = client.chat([AIMessage(role="user", content="こんにちは")])
@@ -89,9 +89,9 @@ class GeminiClientTestCase(unittest.TestCase):
             fp=io.BytesIO(b'{"error":"rate limited"}'),
         )
 
-        with patch("ai_service.gemini_client.urlopen", side_effect=[http_error, FakeResponse(json.dumps(payload))]), patch(
-            "ai_service.gemini_client.time.perf_counter", side_effect=[1.0, 1.5]
-        ), patch("ai_service.gemini_client.time.sleep") as sleep_mock:
+        with patch("ai_chat_wrapper.gemini_client.urlopen", side_effect=[http_error, FakeResponse(json.dumps(payload))]), patch(
+            "ai_chat_wrapper.gemini_client.time.perf_counter", side_effect=[1.0, 1.5]
+        ), patch("ai_chat_wrapper.gemini_client.time.sleep") as sleep_mock:
             client = GeminiClient(api_key="test-key")
             result = client.chat([AIMessage(role="user", content="こんにちは")])
 

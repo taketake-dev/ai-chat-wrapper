@@ -97,7 +97,7 @@
 ## 使う側から見たユースケース（README用サンプルコード）
 
 ```python
-from ai_service.factory import AIServiceFactory
+from ai_chat_wrapper.factory import AIServiceFactory
 
 # ケース1：通常の1往復の会話
 

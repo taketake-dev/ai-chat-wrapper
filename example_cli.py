@@ -2,7 +2,7 @@ import os
 import sys
 
 from dotenv import load_dotenv
-from ai_service.factory import AIServiceFactory
+from ai_chat_wrapper.factory import AIServiceFactory
 
 
 def main() -> None:
