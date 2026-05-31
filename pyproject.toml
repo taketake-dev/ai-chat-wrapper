@@ -12,6 +12,25 @@ dependencies = [
     "python-dotenv>=1.0.0",
 ]
 
+[project.authors]
+name = "taketake-dev"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Homepage = "https://example.com"
+Repository = "https://example.com/repo"
+
+[project.classifiers]
+items = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
 [project.urls]
 Homepage = "https://example.com"
 
